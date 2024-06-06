@@ -28,7 +28,7 @@ Inside the `config` folder, there is a .env file. Edit the .env file in an edito
 
 ## Limitations
 - The TTS Bot utilizes a free account for ElevenLabs, which means that the monthly character request limit may be limited, and this additionally means it cannot handle more than 2 [concurrent requests](https://help.elevenlabs.io/hc/en-us/articles/14312733311761-How-many-requests-can-I-make-and-can-I-increase-it) at a time (3 or more requests in a very short time frame will not go through, and it will slowly generate the tts instead of being near real-time). If you use your own ElevenLabs API key and your account has higher permissions/a subscription, you will not be limited to these limitations.
-- This TTS bot primarily deals with english as it uses ElevenLabs monolingual voice model to reduce latency. It CAN handle multilingual voices, but not nearly as well if you were to use the multi-lingual voice model. If you would like to enable multilingual, replace the line `"eleven_monolingual_v1"` in eleven_labs_handler.py with `"eleven_multilingual_v2"`.
+- This TTS bot primarily deals with english as it uses ElevenLabs monolingual voice model to reduce latency. It CAN handle multilingual voices, but not nearly as well if you were to use the multi-lingual voice model. If you would like to enable multilingual, replace the line `"eleven_monolingual_v1"` in `eleven_labs_handler.py` with `"eleven_multilingual_v2"`.
 
 ## Future 
 
