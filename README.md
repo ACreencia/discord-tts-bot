@@ -1,5 +1,7 @@
-# discord-tts-bot
-## A Python discord bot that utilizes ElevenLabs api to give users different voices.
+# discord-tts-bot <img align="right" width="150" height="150" src="https://addons.mozilla.org/user-media/previews/thumbs/219/219717.jpg?modified=1622132156">
+
+
+## A Python discord bot that utilizes ElevenLabs api to give users different voices. 
 
 ### Description
 This is a Python Discord TTS (text-to-speech) bot that uses the ElevenLabs AI API to generate higher-quality speech from text messages sent in any given Discord server. This is especially helpful for those users who don't want to speak but want to be included in the conversation! This bot does not utilize an audio stream, but creates temporary mp3 files that are
@@ -25,8 +27,10 @@ Inside the `config` folder, there is a .env file. Edit the .env file in an edito
 
 
 ## Limitations
-The TTS Bot utilizes a free account for ElevenLabs, which means that the monthly character request limit may be limited, and this additionally means it cannot handle more than 2 [concurrent requests](https://help.elevenlabs.io/hc/en-us/articles/14312733311761-How-many-requests-can-I-make-and-can-I-increase-it) at a time (3 or more requests in a very short time frame will not go through, and it will slowly generate the tts instead of being near real-time). If you use your own ElevenLabs API key and your account has higher permissions/a subscription, you will not be limited to these limitations
+- The TTS Bot utilizes a free account for ElevenLabs, which means that the monthly character request limit may be limited, and this additionally means it cannot handle more than 2 [concurrent requests](https://help.elevenlabs.io/hc/en-us/articles/14312733311761-How-many-requests-can-I-make-and-can-I-increase-it) at a time (3 or more requests in a very short time frame will not go through, and it will slowly generate the tts instead of being near real-time). If you use your own ElevenLabs API key and your account has higher permissions/a subscription, you will not be limited to these limitations.
+- This TTS bot primarily deals with english as it uses ElevenLabs monolingual voice model to reduce latency. It CAN handle multilingual voices, but not nearly as well if you were to use the multi-lingual voice model. If you would like to enable multilingual, replace the line `"eleven_monolingual_v1"` in eleven_labs_handler.py with `"eleven_multilingual_v2"`.
 
+## Future 
 
 
 ## Usage
