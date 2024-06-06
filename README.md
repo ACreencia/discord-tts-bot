@@ -34,6 +34,7 @@ Inside the `config` folder, there is a .env file. Edit the .env file in an edito
 
 
 ## Usage
+In order to start the bot, run bot.py
 Here's a list of all the commands for the bot:
 
 | Command      | Alias   |   Description   | Example usage |
