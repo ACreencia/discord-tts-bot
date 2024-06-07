@@ -11,7 +11,7 @@ then deleted once all voice lines are played, reducing the required overhead.
 
 
 ### Requirements
-- Python 3.6
+- At least Python 3.6
 - ffmpeg
   
 
