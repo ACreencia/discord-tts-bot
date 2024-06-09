@@ -11,17 +11,25 @@ then deleted once all voice lines are played, reducing the required overhead.
 
 
 ### Requirements
-- At least Python 3.6
+- At least Python 3.6 or Higher Version
 - ffmpeg
   
 
-### Installation
+## Installation
+### Through Git Clone
 ```
 git clone https://github.com/ACreencia/discord-tts-bot.git
 pip install -r requirements.txt
 pip install ffmpeg-python
 ```
+### By Downloading files
+>Download talkBotv3 Folder and run the following pip commands
+```
+pip install -r requirements.txt
+pip install ffmpeg-python
+```
 
+- For both methods, in order to start the bot, run the  `bot.py`  file, assuming you have obtained your discord token and elevenlabs api key.
 ## Configuration
 Inside the `config` folder, there is a .env file. Edit the .env file in an editor of your choosing, and edit the file with your own Discord Token and ElevenLabs Api key/Token. If you don't know how to generate your Discord Token and/or your ElevenLabs API key, you can follow a guide on how to create it [here](https://github.com/ACreencia/discord-tts-bot/wiki)
 
