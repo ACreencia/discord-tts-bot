@@ -27,6 +27,7 @@ pip install ffmpeg-python
 ```
 pip install -r requirements.txt
 pip install ffmpeg-python
+pip install PyNaCl
 ```
 
 - For both methods, in order to start the bot, run the  `bot.py`  file, assuming you have obtained your discord token and elevenlabs api key.
