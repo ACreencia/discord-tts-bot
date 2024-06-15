@@ -12,7 +12,7 @@ then deleted once all voice lines are played, reducing the required overhead.
 
 ### Requirements
 - At least Python 3.6 or Higher Version
-- ffmpeg
+- ffmpeg downloaded and added to the PATH variable
   
 
 ## Installation
@@ -28,6 +28,7 @@ pip install ffmpeg-python
 pip install -r requirements.txt
 pip install ffmpeg-python
 pip install PyNaCl
+python3 -m pip install -U discord.py[voice]
 ```
 
 - For both methods, in order to start the bot, run the  `bot.py`  file, assuming you have obtained your discord token and elevenlabs api key.
