@@ -102,6 +102,18 @@ class TTSVoicePlayer:
     """
     return (discord_username in self._voice_association)
     
+  def remove_user_from_registered(self, discord_username):
+    """
+    removes discord_username from the registered voice list
+
+    Parameters
+    ---------------
+    discord_username: (string)
+      the string representation of a user's discord username/id
+    
+    """
+    self._voice_association.pop(discord_username)
+    return
 
   def is_connected_to_vc(self, ctx):
       """

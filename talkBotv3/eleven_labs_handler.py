@@ -23,7 +23,7 @@ class ElevenLabsHandler():
   def __init__(self):
     #self._elevenlabsClient = elevenlabsClient
     self._elevenlabs_client = AsyncElevenLabs(api_key=ELEVEN_LABS_API_KEY)
-    self._voiceIDs = self.get_en_voice_list()
+    #self._voiceIDs = self.get_en_voice_list()
 
     
  
@@ -40,19 +40,25 @@ class ElevenLabsHandler():
     """
     
     eng_voices =  []
-    response = self._elevenlabs_client.voices.get_all()
+    response = await self._elevenlabs_client.voices.get_all()
     for voice_filter in response:     # voice_filter is a tuple that holds (voice, VoiceList{VoiceObject(),..})
       for voices in voice_filter[1]:  # access the inner VoiceObjects within VoiceList
         if (voices.fine_tuning.language == "en"):
           eng_voices.append(voices)
-    return await eng_voices
+    return eng_voices
+
+  @classmethod
+  async def create(cls):
+    self = cls()
+    self._voiceIDs = await self.get_en_voice_list()
+    return self
 
 
-  async def get_rand_en_voice(self):
+  def get_rand_en_voice(self):
     """
     generates a random english voice_id 
     """
-    return await (self._voiceIDs[randrange(1,len(self._voiceIDs))])
+    return (self._voiceIDs[randrange(1,len(self._voiceIDs))])
 
   
 
@@ -69,6 +75,7 @@ class ElevenLabsHandler():
       The elevenlabs voice_id of the desired voice for tts
     
     """
+    # change model variable string here to change voice models (if you desire multilingual support from elevenlabs)
     audio_stream = await self._elevenlabs_client.generate(
         text = response_message,
         model="eleven_monolingual_v1",

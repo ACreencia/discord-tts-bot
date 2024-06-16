@@ -35,15 +35,13 @@ class tts(commands.Cog):
 
     """
     _ttsVoiceInstances (dict{ ttsVoicePlayers })    : dictionary of all the invoked ttsVoicePlayers across multiple servers
-    _registered_users 
     
     """
-    __slots__ = ('bot', '_ttsVoiceInstances', '_registered_users', '_elevenlabsHandlers')
+    __slots__ = ('bot', '_ttsVoiceInstances', '_elevenlabsHandlers')
 
     def __init__(self, bot):
        self.bot = bot
        self._tts_voice_player_instances = {}
-       self._registered_users = {}
        self._elevenlabsHandlers = {}
       
 
@@ -76,7 +74,7 @@ class tts(commands.Cog):
 
 
     # NOTE: this does NOT verify the users eleven_labs_api, this will encounter an error. 
-    def get_elevenlabs_handler(self, ctx):
+    async def get_elevenlabs_handler(self, ctx):
       """ retrieves the elevenlabs handler from dictionary, or generates one if it does not exist. 
       NOTE: does not verify the api key, must make sure its valid first 
       
@@ -94,7 +92,7 @@ class tts(commands.Cog):
       try:
         elevenlabs = self._elevenlabsHandlers[ctx.guild.id]
       except KeyError:
-        elevenlabs = ElevenLabsHandler()
+        elevenlabs = await ElevenLabsHandler.create()
         self._elevenlabsHandlers[ctx.guild.id] = elevenlabs
       return elevenlabs
 
@@ -134,19 +132,15 @@ class tts(commands.Cog):
         the associated context within the current discord server
       
       """
-      if ctx.author in self._registered_users:
+      tts_player = self.get_tts_player(ctx)
+      if tts_player.check_if_username_in_registered(ctx.author):
         await ctx.send(f"{str(ctx.author)} is already registered under tts bot for this session. Please use !help to find proper usage")
         return
       else:
-        # obtain tts player
-        tts_player = self.get_tts_player(ctx)
-        elevenlabs = self.get_elevenlabs_handler(ctx)
+        elevenlabs = await self.get_elevenlabs_handler(ctx)
         # get a random voice id from elevenlabs, then assign it to user through tts_player
         tts_player.register_voice_id(ctx.author, elevenlabs.get_rand_en_voice())
         await ctx.send(f"Voice assigned and now listening to user: {str(ctx.author)}")
-        
-
-        #elevenlabs.assign_rand_en_voice()
 
     @commands.command(name="join")
     async def join_vc(self, ctx):
@@ -213,9 +207,10 @@ class tts(commands.Cog):
   
     @commands.command(name="stop")
     async def stop_listening(self, ctx):
-      if ctx.author in self._registered_users:
-        self._registered_users.pop(ctx.author)
-        await ctx.message.channel.send(f"Talk_Bot has stopped listening to {ctx.author}. Thanks for using Talk_bot!")
+      tts_player = self.get_tts_player(ctx)
+      if (tts_player.check_if_username_in_registered(ctx.author)):
+        tts_player.remove_user_from_registered(ctx.author)
+        await ctx.message.channel.send(f"Talk_Bot has stopped listening to user: {ctx.author}. Thanks for using Talk_bot!")
       else:
         await ctx.message.channel.send(f"{ctx.author} was not registered as a tts user. Use command  `!listen` to register, and  `!stop`  afterwards to stop bot from listening to your messages")
 
@@ -283,7 +278,7 @@ class tts(commands.Cog):
       """
       # get respective class handlers
       tts_player = self.get_tts_player(ctx)
-      eleven_labs_handler = self.get_elevenlabs_handler(ctx)
+      eleven_labs_handler = await self.get_elevenlabs_handler(ctx)
 
       # get voice_id associated with discord user, generate tts then delete it afterwards
       discord_username_voice_id = tts_player.get_voice_id_of_user(ctx.message.author)
