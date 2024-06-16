@@ -21,6 +21,8 @@ then deleted once all voice lines are played, reducing the required overhead.
 git clone https://github.com/ACreencia/discord-tts-bot.git
 pip install -r requirements.txt
 pip install ffmpeg-python
+pip install PyNaCl
+python3 -m pip install -U discord.py[voice]
 ```
 ### By Downloading files
 >Download talkBotv3 Folder and run the following pip commands
