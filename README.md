@@ -55,9 +55,10 @@ Here's a list of all the commands for the bot:
 | `!listen`      | None | Begin listening to this specific discord username for tts messages | `!listen` |
 | `!stop` | None | stops listening to this specific discord username for tts messages | `!stop` |
 | `!leave` | None | Bot leaves the current voice channel it is in | `!leave` |
-| `!change <voice_id>` | None | changes your tts voice to <voice_id>.  | `!change pvleJogO6ysv81iuFFgp`     |
+| `!change <voice_id>` | None | changes your tts voice** to <voice_id>   | `!change pvleJogO6ysv81iuFFgp`     |
 | `!usage`   | `!use`, `!idk`, `!?` | displays a help message with all the available commands  | `!usage` |
 
+** You can only use premade voice id's at the current moment, and you can find a list [here](https://elevenlabs.io/docs/voices/premade-voices)
 
 
 
